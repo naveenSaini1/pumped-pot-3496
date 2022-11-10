@@ -13,12 +13,11 @@ public class IbookingDaoImpl implements IBookingService{
 	
 	@Autowired
 	private IBookingRepository IbookRepo;
-
+	
 	@Override
-	public Booking makeBooking(Booking booking) {
-		// TODO Auto-generated method stub
+	public Booking makeBooking(Booking booking){
 		Booking b = IbookRepo.save(booking);
-		return b;
+		return null;
 	}
 
 	@Override
