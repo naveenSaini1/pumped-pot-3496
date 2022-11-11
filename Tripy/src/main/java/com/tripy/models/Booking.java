@@ -27,5 +27,6 @@ public class Booking {
 	private String description;
 	private String bookingTitle;
 	private LocalDate bookingDate;
+	
 
 }
