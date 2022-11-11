@@ -1,20 +1,37 @@
 package com.tripy.services;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.tripy.customerexception.AdminExecption;
 import com.tripy.models.Admin;
+import com.tripy.repositary.AdminRep;
 
+@Service
 public class AdminServiceImpl implements AdminService{
+	
+	@Autowired
+	private AdminRep aRepo;
 
 	@Override
 	public Admin registerAdmin(Admin admin) throws AdminExecption {
-		// TODO Auto-generated method stub
-		return null;
+		Admin regAdmin = aRepo.save(admin);
+		
+		return regAdmin;
 	}
 
 	@Override
 	public Admin loginAdmin(String userName, String password) throws AdminExecption {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Optional<Admin> admin =  aRepo.findByUserNameAndPassword(userName, password);
+		if(admin.isPresent()) {
+			return admin.get();
+		}else {
+			throw new AdminExecption("Admin not found with username "+ userName);
+		}
+		
 	}
 
 	@Override
