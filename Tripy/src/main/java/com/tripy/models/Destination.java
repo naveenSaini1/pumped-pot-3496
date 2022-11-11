@@ -31,6 +31,6 @@ public class Destination {
 	private String destinationName;
 	private String description;
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Package> routes=new ArrayList<>();
+	private List<Package> packages=new ArrayList<>();
 
 }
