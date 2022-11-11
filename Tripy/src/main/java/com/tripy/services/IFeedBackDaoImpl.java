@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tripy.globalexception.FeedbackException;
+import com.tripy.models.Customers;
 import com.tripy.models.Feedback;
+import com.tripy.repositary.CustomersRepo;
 import com.tripy.repositary.IFeedBackRepository;
 import com.tripy.repositary.feedbackDao;
 
@@ -15,6 +17,8 @@ import com.tripy.repositary.feedbackDao;
 public class IFeedBackDaoImpl implements IFeedbackServer {
 	@Autowired
 	private feedbackDao feedDao;
+	@Autowired
+	private CustomersRepo customerepo;
 	
 	@Autowired
 	private IFeedBackRepository ifeedbackRepo;
@@ -33,11 +37,8 @@ public class IFeedBackDaoImpl implements IFeedbackServer {
 		return op;
 	}
 
-	@Override
-	public Feedback findbycustomerid(Integer Customerid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
 
 	@Override
 	public List<Feedback> viewallfeedbacks() throws FeedbackException {
@@ -50,6 +51,39 @@ public class IFeedBackDaoImpl implements IFeedbackServer {
 		}
 		throw new FeedbackException("No feedbacks found!");
 		
+	}
+
+	@Override
+	public Feedback delteById(Integer id) throws FeedbackException {
+		// TODO Auto-generated method stub
+		Optional<Feedback> fedOptional = feedDao.findById(id);
+		if (fedOptional.isPresent()) {
+			 feedDao.deleteById(id);
+			return fedOptional.get();
+//			return fedOptional.get();
+			
+
+		}
+		throw new FeedbackException("No feedbacks found!");
+//		return feedback;
+	}
+
+	@Override
+	public Feedback findbycustomerid(Integer Customerid) throws FeedbackException {
+//		public Feedback findbycustomerid(Integer Customerid)  throws FeedbackException{
+		//
+				Optional<Customers> customers= customerepo.findById(Customerid);
+				if(customers.isPresent()) {
+					Optional<Feedback> f1= ifeedbackRepo.findByCustomerName((customers.get().getCustomerName()));
+				
+					return f1.get();
+					
+			}
+//				return new Feedback();
+			throw new FeedbackException("no Data Found");
+//				
+//			}
+//				return null;
 	}
 
 }
