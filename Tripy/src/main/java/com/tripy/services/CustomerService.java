@@ -11,4 +11,6 @@ public interface CustomerService {
 	public Customers veiwCustomerById(Integer customerId)throws CustomerNotFoundException;
 	public List<Customers> viewAllcustomers()throws CustomerNotFoundException;
 	public List<Customers> viewCustomersList()throws CustomerNotFoundException;
+	public Customers createCustomers(Customers customer)throws CustomerNotFoundException ;
+	public Customers updateCustomers(Customers customer,String key)throws CustomerNotFoundException;
 }

@@ -28,8 +28,8 @@ public class CustomerController {
 	
 	@PostMapping("/registercustomer")
 	public ResponseEntity<Customers> registerCustomer(@Valid @RequestBody Customers customer) throws CustomerNotFoundException{
-		Customers c = custService.addCustomers(customer);
-		
+//		Customers c = custService.addCustomers(customer);
+		Customers c = custService.createCustomers(customer);
 		return new ResponseEntity<Customers>(c,HttpStatus.OK);
 	}
 	
@@ -56,6 +56,18 @@ public class CustomerController {
 		List<Customers> list = custService.viewAllcustomers();
 		
 		return new ResponseEntity<List<Customers>>(list,HttpStatus.OK);
+	}
+	
+	
+	@PutMapping("/updatecustomerLog/{key}")
+	public ResponseEntity<Customers> updateCustomerLog(@RequestBody Customers customers,@PathVariable("key")String key) throws CustomerNotFoundException{
+		
+		Customers c = custService.updateCustomers(customers,key);
+		
+//		Customers c = customers;
+		
+		return new ResponseEntity<Customers>(c,HttpStatus.ACCEPTED);
+		
 	}
 	
 }

@@ -8,4 +8,5 @@ import com.tripy.models.Customers;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customers, Integer>{
 
+	public Customers findByEmail(String email); 
 }
