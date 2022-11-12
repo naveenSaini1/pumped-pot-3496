@@ -28,8 +28,8 @@ import lombok.ToString;
 public class Customers {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer cusomterId;
-	@Size(min = 3)
+	private Integer customerId;
+	@Size(min = 3) 
 	private String customerName;
 	@Size(min = 4)
 	private String password;

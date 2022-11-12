@@ -30,11 +30,11 @@ public class Booking {
 	private int bookingId;
 	@Size(min = 2,message = "Enter the bookingtype between minmum 3 length ")
 	private String bookingType;
-//	@Min(value = 3,message = "Elease Enter minimum 3 length")
+	@Size(min = 3,message = "Elease Enter minimum 3 length")
 	private String description;
-//	@Min(value = 3,message = "Elease Enter minimum 3 length")
+	@Size(min  = 3,message = "Elease Enter minimum 3 length")
 	private String bookingTitle;
 	private LocalDate bookingDate;
 	@OneToOne
-	private Package pacKage;
+	private Destination destination;
 }

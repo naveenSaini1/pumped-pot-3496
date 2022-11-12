@@ -1,7 +1,14 @@
 package com.tripy.services;
 
+import java.util.List;
+
+import com.tripy.customerexception.CustomerNotFoundException;
 import com.tripy.models.Customers;
 
-public interface ICustomerService {
-	public Customers addCustomers(Customers customers);
+public interface CustomerService {
+	public Customers addCustomers(Customers customer)throws CustomerNotFoundException ;
+	public Customers updateCustomer(Customers customer)throws CustomerNotFoundException;
+	public Customers veiwCustomerById(Integer customerId)throws CustomerNotFoundException;
+	public List<Customers> viewAllcustomers()throws CustomerNotFoundException;
+	public List<Customers> viewCustomersList()throws CustomerNotFoundException;
 }

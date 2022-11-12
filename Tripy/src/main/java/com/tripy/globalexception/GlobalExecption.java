@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 import com.tripy.customerexception.BookingNotFoundException;
+import com.tripy.customerexception.CustomerNotFoundException;
 
 @ControllerAdvice
 public class GlobalExecption {
@@ -16,6 +17,15 @@ public class GlobalExecption {
 	
 	@ExceptionHandler(BookingNotFoundException.class)
 	public ResponseEntity<Error> myBookingHandller(BookingNotFoundException bnf,WebRequest wr){
+		Error e = new Error();
+		e.setTimeStamp(LocalDateTime.now());
+		e.setMessage(bnf.getMessage());
+		e.setDescription(wr.getDescription(false));
+		return new ResponseEntity<Error>(e,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(CustomerNotFoundException.class)
+	public ResponseEntity<Error> myCustomerHandller(CustomerNotFoundException bnf,WebRequest wr){
 		Error e = new Error();
 		e.setTimeStamp(LocalDateTime.now());
 		e.setMessage(bnf.getMessage());

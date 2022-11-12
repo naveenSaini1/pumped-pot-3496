@@ -5,7 +5,7 @@ import java.util.List;
 import com.tripy.customerexception.BookingNotFoundException;
 import com.tripy.models.Booking;
 
-public interface IBookingService {
+public interface BookingService {
 
 	public Booking makeBooking(Booking booking)throws BookingNotFoundException;
 	public Booking cancelBooking(Integer bookingId)throws BookingNotFoundException;

@@ -3,9 +3,9 @@ package com.tripy.repositary;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.tripy.models.Booking;
+import com.tripy.models.Customers;
 
 @Repository
-public interface BookingRepository extends JpaRepository<Booking, Integer>{
+public interface CustomerRepository extends JpaRepository<Customers, Integer>{
 
 }
