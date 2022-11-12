@@ -25,6 +25,6 @@ public class Hotel {
 	private String hotelDesciption;
 	private String address;
 	private double rent;
-	private String statu;
+	private String status;
 	
 }

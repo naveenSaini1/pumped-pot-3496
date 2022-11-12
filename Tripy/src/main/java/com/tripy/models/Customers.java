@@ -37,7 +37,6 @@ public class Customers {
 	private String email;
 	@Size(min = 10 ,max = 10,message = "Please Enter the 10 Digit Mobile Number")
 	private String mobile;
-//	private List<>
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Destination> routes=new ArrayList<>(); 
 	

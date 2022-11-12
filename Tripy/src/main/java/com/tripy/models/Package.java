@@ -20,8 +20,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-
-
 public class Package {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,9 +34,4 @@ public class Package {
 	private Hotel hotel;
 	@OneToOne
 	private Route route;
-	
-	
-	
-	
-
 }

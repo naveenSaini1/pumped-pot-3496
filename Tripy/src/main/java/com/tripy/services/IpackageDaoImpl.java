@@ -5,19 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tripy.repositary.IpackageRepository;
+//import com.tripy.repositary.IpackageRepository;
 
 @Service
 public class IpackageDaoImpl implements IpackageService{
 
-	@Autowired
-	private IpackageRepository IpackageRepo;
+//	@Autowired
+//	private IpackageRepository iPackageRepo;
+	
 	@Override
 	public Package addPackage(Package pac) {
 		// TODO Auto-generated method stub
-		Package p = IpackageRepo.save(pac);
+//		Package p = iPackageRepo.save(pac);
 		
-		return p;
+		return null;
 	}
 
 	@Override
