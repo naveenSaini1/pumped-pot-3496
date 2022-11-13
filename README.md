@@ -84,7 +84,7 @@ SWAGGER UI Documentation - `http://localhost:8888/swagger-ui/`
 ```
     server.port=8888
 
-    spring.datasource.url=jdbc:mysql://localhost:3306/mydb;
+    spring.datasource.url=jdbc:mysql://localhost:3306/tripy;
     spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
     spring.datasource.username=root
     spring.datasource.password=root
