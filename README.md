@@ -23,11 +23,11 @@
 
 <!-- ============================================  CONTRIBUTORS ======================================================  -->
 ## Our Team Members 👨‍💻
-  - **[@Raushan Raj](https://github.com/raushanraj901)**
-  - **[@Rajesh Pradhan](https://github.com/raje2)**
-  - **[@Vijay Handal](https://github.com/vijay9969)**
-  - **[@Varsha Dhingra](https://github.com/varuvarshu)**
-  - **[@Naveen Saini](https://github.com/naveenSaini1)**
+  - **[@Raushan Raj](https://github.com/raushanraj901)(Admin API)**
+  - **[@Rajesh Pradhan](https://github.com/raje2)(Destination API)**
+  - **[@Vijay Handal](https://github.com/vijay9969)(Customer Booking API)**
+  - **[@Varsha Dhingra](https://github.com/varuvarshu)(Feedback API)**
+  - **[@Naveen Saini](https://github.com/naveenSaini1)(Report API)**
 
 <!-- ============================================  TECH STACK ======================================================  -->
 
