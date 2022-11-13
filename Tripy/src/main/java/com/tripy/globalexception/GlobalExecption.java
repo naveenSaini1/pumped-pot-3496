@@ -29,6 +29,33 @@ public class GlobalExecption {
 		
 		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
 	}
+
+	@ExceptionHandler(BookingNotFoundException.class)
+	public ResponseEntity<Error> myBookingHandller(BookingNotFoundException bnf,WebRequest wr){
+		Error e = new Error();
+		e.setTimeStamp(LocalDateTime.now());
+		e.setMessage(bnf.getMessage());
+		e.setDescription(wr.getDescription(false));
+		return new ResponseEntity<Error>(e,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(CustomerNotFoundException.class)
+	public ResponseEntity<Error> myCustomerHandller(CustomerNotFoundException bnf,WebRequest wr){
+		Error e = new Error();
+		e.setTimeStamp(LocalDateTime.now());
+		e.setMessage(bnf.getMessage());
+		e.setDescription(wr.getDescription(false));
+		return new ResponseEntity<Error>(e,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<Error> myCustomerHandller(LoginException bnf,WebRequest wr){
+		Error e = new Error();
+		e.setTimeStamp(LocalDateTime.now());
+		e.setMessage(bnf.getMessage());
+		e.setDescription(wr.getDescription(false));
+		return new ResponseEntity<Error>(e,HttpStatus.BAD_REQUEST);
+	}
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<MyErrorDetails> ExceptionHandler(Exception se , WebRequest req) {
