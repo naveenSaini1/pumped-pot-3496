@@ -6,5 +6,5 @@ import com.tripy.models.CurrentAdminSession;
 
 public interface AdminSessionRepo extends JpaRepository<CurrentAdminSession, Integer>{
 	
-	public CurrentAdminSession findByAdId(String adId);
+	public CurrentAdminSession findByadId(String adId);
 }
