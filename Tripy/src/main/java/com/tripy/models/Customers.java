@@ -25,7 +25,7 @@ public class Customers {
 	@Size(min = 10 ,max = 10,message = "Please Enter the 10 Digit Mobile Number")
 	private String mobile;
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Destination> routes=new ArrayList<>(); 
+	private List<Booking> bookings=new ArrayList<>(); 
 	
 	public Customers() {
 		// TODO Auto-generated constructor stub
@@ -34,14 +34,14 @@ public class Customers {
 	public Customers(Integer customerId, @Size(min = 3) String customerName, @Size(min = 4) String password,
 			@Email String email,
 			@Size(min = 10, max = 10, message = "Please Enter the 10 Digit Mobile Number") String mobile,
-			List<Destination> routes) {
+			List<Booking> bookings) {
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.password = password;
 		this.email = email;
 		this.mobile = mobile;
-		this.routes = routes;
+		this.bookings = bookings;
 	}
 
 	public Integer getCustomerId() {
@@ -84,18 +84,18 @@ public class Customers {
 		this.mobile = mobile;
 	}
 
-	public List<Destination> getRoutes() {
-		return routes;
+	public List<Booking> getRoutes() {
+		return bookings;
 	}
 
-	public void setRoutes(List<Destination> routes) {
-		this.routes = routes;
+	public void setRoutes(List<Booking> bookings) {
+		this.bookings = bookings;
 	}
 
 	@Override
 	public String toString() {
 		return "Customers [customerId=" + customerId + ", customerName=" + customerName + ", password=" + password
-				+ ", email=" + email + ", mobile=" + mobile + ", routes=" + routes + "]";
+				+ ", email=" + email + ", mobile=" + mobile + ", routes=" + bookings + "]";
 	}
 	
 	
