@@ -30,7 +30,6 @@ public class BookingDaoImpl implements BookingService{
 
 	@Override
 	public Booking cancelBooking(Integer bookingId) throws BookingNotFoundException {
-		// TODO Auto-generated method stub
 		Booking b = BookRepo.findById(bookingId).orElseThrow(()-> new BookingNotFoundException("Booking not found with Booking Id:"+ bookingId));
 		BookRepo.delete(b);
 		return b;
@@ -38,14 +37,12 @@ public class BookingDaoImpl implements BookingService{
 
 	@Override
 	public Booking viewBooking(Integer bookingId) throws BookingNotFoundException {
-		// TODO Auto-generated method stub
 		Booking b = BookRepo.findById(bookingId).orElseThrow(()-> new BookingNotFoundException("Booking not found with Booking Id:"+ bookingId));
 		return b;
 	}
 
 	@Override
 	public List<Booking> viewAllBookings() throws BookingNotFoundException {
-		// TODO Auto-generated method stub
 		 List<Booking> list = BookRepo.findAll();
 		 if(list.size()==0) {
 			 throw new BookingNotFoundException("Booking List is empty..!!");
