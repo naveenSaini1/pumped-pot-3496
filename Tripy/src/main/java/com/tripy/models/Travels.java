@@ -13,11 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+
 @Entity
 
 public class Travels {
@@ -28,5 +24,49 @@ public class Travels {
 	private String agentName;
 	private String address;
 	private String contact;
+	public Travels(Integer travelsId, String travelsName, String agentName, String address, String contact) {
+		super();
+		this.travelsId = travelsId;
+		this.travelsName = travelsName;
+		this.agentName = agentName;
+		this.address = address;
+		this.contact = contact;
+	}
+	public Travels() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Integer getTravelsId() {
+		return travelsId;
+	}
+	public void setTravelsId(Integer travelsId) {
+		this.travelsId = travelsId;
+	}
+	public String getTravelsName() {
+		return travelsName;
+	}
+	public void setTravelsName(String travelsName) {
+		this.travelsName = travelsName;
+	}
+	public String getAgentName() {
+		return agentName;
+	}
+	public void setAgentName(String agentName) {
+		this.agentName = agentName;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	
+	
 
 }
