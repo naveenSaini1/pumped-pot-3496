@@ -36,10 +36,12 @@ public class BookingController {
 		List<Destination> list = destiService.showAllDesitnations();
 		return new ResponseEntity<List<Destination>>(list,HttpStatus.OK);
 	}
-//	
+	
 	@PostMapping("/newbooking/{did}")
-	public ResponseEntity<Booking> newBooking(@Valid @RequestBody Booking booking,@PathVariable("did")Integer did) throws BookingNotFoundException {
+	public ResponseEntity<Booking> newBooking(@Valid @RequestBody Booking booking,@PathVariable("did")Integer did) throws BookingNotFoundException, DestinationExecption {
 		
+		 Destination des = destiService.findDestinationById(did);
+		 booking.setDestination(des);
 		 Booking book =  iBookingSer.makeBooking(booking); 
 		
 		return new ResponseEntity<Booking>(book,HttpStatus.ACCEPTED);
