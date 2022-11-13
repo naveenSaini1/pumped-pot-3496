@@ -61,7 +61,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Admin updateAdminDetails(Admin admin, String key) throws AdminExecption {
 		
-		CurrentAdminSession loggedAdmin = sessionRepo.findByAdId(key);
+		CurrentAdminSession loggedAdmin = sessionRepo.findByadId(key);
 		
 		if(loggedAdmin == null) {
 			throw new AdminExecption("Please provide valid key to update details");
@@ -107,7 +107,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public String adminLogOutFromAccount(String key) throws LoginException {
 		
-		CurrentAdminSession adminCurrentSession = sessionRepo.findByAdId(key);
+		CurrentAdminSession adminCurrentSession = sessionRepo.findByadId(key);
 		
 		if(adminCurrentSession == null)
 			throw new LoginException("User not logged in with this number");
