@@ -8,6 +8,6 @@ import com.tripy.models.CurrentUserSession;
 @Repository
 public interface SessionDao extends JpaRepository<CurrentUserSession, Integer>{
 
-	public CurrentUserSession findByKey(String key);
+	public CurrentUserSession findByUkey(String key);
 	
 }

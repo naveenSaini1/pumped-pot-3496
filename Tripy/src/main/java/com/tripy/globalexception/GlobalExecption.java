@@ -43,5 +43,13 @@ public class GlobalExecption {
 		return new ResponseEntity<Error>(e,HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<Error> allinoneException(Exception bnf,WebRequest wr){
+		Error e = new Error();
+		e.setTimeStamp(LocalDateTime.now());
+		e.setMessage(bnf.getMessage());
+		e.setDescription(wr.getDescription(false));
+		return new ResponseEntity<Error>(e,HttpStatus.BAD_REQUEST);
+	}
 
 }

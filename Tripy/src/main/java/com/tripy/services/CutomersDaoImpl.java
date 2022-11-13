@@ -95,9 +95,9 @@ public class CutomersDaoImpl implements CustomerService{
 	}
 
 	@Override
-	public Customers updateCustomers(Customers customer, String key) throws CustomerNotFoundException {
+	public Customers updateCustomers(Customers customer, String ukey) throws CustomerNotFoundException {
 		// TODO Auto-generated method stub
-		CurrentUserSession cu = sessionDao.findByKey(key);
+		CurrentUserSession cu = sessionDao.findByUkey(ukey);
 		if(cu==null) {
 			throw new CustomerNotFoundException("Please Enter a valid key to update a customer");
 		}

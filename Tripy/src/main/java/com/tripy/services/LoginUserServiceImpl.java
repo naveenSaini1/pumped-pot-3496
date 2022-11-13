@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.tripy.customerexception.LoginException;
 import com.tripy.models.CurrentUserSession;
 import com.tripy.models.Customers;
-import com.tripy.models.Login;
+import com.tripy.models.LoginUser;
 import com.tripy.repositary.CustomerRepository;
 import com.tripy.repositary.SessionDao;
 
 import net.bytebuddy.utility.RandomString;
 
 @Service
-public class LoginServiceImpl implements LoginService{
+public class LoginUserServiceImpl implements LoginUserService{
 
 	@Autowired
 	private CustomerRepository cRepository;
@@ -24,7 +24,7 @@ public class LoginServiceImpl implements LoginService{
 	private SessionDao sService;
 	
 	@Override
-	public String loginIntoAccount(Login login) throws LoginException {
+	public String loginIntoAccount(LoginUser login) throws LoginException {
 		// TODO Auto-generated method stub
 		Customers existingCust = cRepository.findByEmail(login.getUserId());
 		
@@ -37,28 +37,28 @@ public class LoginServiceImpl implements LoginService{
 		if(validCustomer.isPresent()) {
 			throw new LoginException("User already Logged In");
 		}
-//		
-//		if(existingCust.getPassword().equals(login.getPassword())) {
-//			
-//			String key  = RandomString.make(6);
-//			
-//			CurrentUser currentUser = new CurrentUser(existingCust.getCustomerId(),key,LocalDateTime.now());
-//			
-//			sService.save(currentUser);
-//			
-//			return currentUser.toString();
-//			
-//		}else {
-//			throw new LoginException("Please Enter a valid Password");
-//		}
-		return "hello!";
+		
+		if(existingCust.getPassword().equals(login.getPassword())) {
+			
+			String ukey  = RandomString.make(6);
+			
+			CurrentUserSession currentUser = new CurrentUserSession(existingCust.getCustomerId(),ukey,LocalDateTime.now());
+			
+			sService.save(currentUser);
+			
+			return "Login successfully..!!\n"+currentUser.toString();
+			
+		}else {
+			throw new LoginException("Please Enter a valid Password");
+		}
+//		return "hello!";
 	}
 
 	@Override
-	public String logOutFromAccount(String key) throws LoginException {
+	public String logOutFromAccount(String ukey) throws LoginException {
 		
 
-		CurrentUserSession cu = sService.findByKey(key);
+		CurrentUserSession cu = sService.findByUkey(ukey);
 		
 		if(cu == null) {
 			throw new LoginException("User Not Logged In");
