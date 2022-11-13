@@ -7,5 +7,7 @@ import com.tripy.models.Report;
 
 @Repository
 public interface ReportRepo extends JpaRepository<Report, Integer>{
+	
+	
 
 }
