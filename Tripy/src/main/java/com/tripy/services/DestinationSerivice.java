@@ -11,6 +11,6 @@ public interface DestinationSerivice {
 	public List<Destination> showAllDesitnations() throws DestinationExecption;
 	public Destination deletedestinatinsById(Integer destinationId) throws DestinationExecption;
 	public Destination findDestinationById(Integer destinationId) throws DestinationExecption;
-	public Destination updateDestination(Destination destination);
+	public Destination updateDestination(Destination destination,Integer id) throws DestinationExecption;
 	
 }
