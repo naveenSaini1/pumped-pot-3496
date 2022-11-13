@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.tripy.models.Booking;
 
 @Repository
-public interface IBookingRepository extends JpaRepository<Booking, Integer>{
+public interface BookingRepository extends JpaRepository<Booking, Integer>{
 
 }
