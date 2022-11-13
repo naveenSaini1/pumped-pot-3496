@@ -88,6 +88,10 @@ SWAGGER UI Documentation - `http://localhost:8888/swagger-ui/`
     spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
     spring.datasource.username=root
     spring.datasource.password=root
+    spring.jpa.hibernate.ddl-auto=update
+    spring.jpa.show-sql=true
+
+    spring.mvc.pathmatch.matching-strategy= ANT_PATH_MATCHER
 
 ```
 
