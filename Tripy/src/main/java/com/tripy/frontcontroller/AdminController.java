@@ -30,11 +30,11 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@PostMapping("/admin")
-	public ResponseEntity<Admin> registerAdmin(@RequestBody Admin admin) throws AdminExecption {
+	public ResponseEntity<String> registerAdmin(@Validated @RequestBody Admin admin) throws AdminExecption {
 		
-		Admin saveAdmin = adminService.registerAdmin(admin);
+		String saveAdmin = adminService.registerAdmin(admin);
 		
-		return new ResponseEntity<Admin>(saveAdmin,HttpStatus.CREATED);
+		return new ResponseEntity<String>(saveAdmin,HttpStatus.CREATED);
 		
 	}
 	@GetMapping("/admin/{id}")
@@ -44,21 +44,21 @@ public class AdminController {
 	}
 	
 	@DeleteMapping("/admin/{id}")
-	public ResponseEntity<Admin> deleteAdminByIdHandler(@PathVariable("id") Integer id) throws AdminExecption{
-		Admin deletedAdmin = adminService.deleteAdminById(id);
-		return new ResponseEntity<Admin>(deletedAdmin,HttpStatus.OK);
+	public ResponseEntity<String> deleteAdminByIdHandler(@PathVariable("id") Integer id) throws AdminExecption{
+		String deletedAdmin = adminService.deleteAdminById(id);
+		return new ResponseEntity<String>(deletedAdmin,HttpStatus.OK);
 	}
 	
 	@PutMapping("/admin/")
-	public ResponseEntity<Admin> updateAdminDetails(@RequestBody Admin admin,@RequestParam(required = false) String key) throws AdminExecption{
+	public ResponseEntity<String> updateAdminDetails(@Validated @RequestBody Admin admin,@RequestParam(required = false) String key) throws AdminExecption{
 		
-		Admin updatedAdmin = adminService.updateAdminDetails(admin, key);
+		String updatedAdmin = adminService.updateAdminDetails(admin, key);
 		
-		return new ResponseEntity<Admin>(updatedAdmin,HttpStatus.OK);
+		return new ResponseEntity<String>(updatedAdmin,HttpStatus.OK);
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> loginAdminHandler( @RequestBody AdminLoginDTO aDto) throws LoginException{
+	public ResponseEntity<String> loginAdminHandler(@Validated @RequestBody AdminLoginDTO aDto) throws LoginException{
 		String string = adminService.adminLogInToAccount(aDto);
 		
 		return new ResponseEntity<String>(string,HttpStatus.OK);

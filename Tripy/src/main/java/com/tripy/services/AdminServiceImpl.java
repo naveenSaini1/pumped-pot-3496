@@ -28,24 +28,24 @@ public class AdminServiceImpl implements AdminService{
 	private AdminSessionRepo sessionRepo;
 
 	@Override
-	public Admin registerAdmin(Admin admin) throws AdminExecption {
+	public String registerAdmin(Admin admin) throws AdminExecption {
 		
 		Admin existadmin = aRepo.findByMobile(admin.getMobile());
 		
 		if(existadmin != null)
 			throw new AdminExecption("Admin already registered with mobile number "+admin.getMobile());
-		
-		return aRepo.save(admin);
+		Admin regAdmin = aRepo.save(admin);
+		return "Admin registered successfully....\nDetails:\n"+regAdmin.toString();
 	}
 
 	@Override
-	public Admin deleteAdminById(Integer id) throws AdminExecption {
+	public String deleteAdminById(Integer id) throws AdminExecption {
 		
 		Optional<Admin> opt= aRepo.findById(id);
 		if(opt.isPresent()) {
 			Admin admin = opt.get();
 			aRepo.delete(admin);
-			return admin;
+			return "Admin deleted successfully !\nDetails:\n"+admin.toString();
 		}else {
 			throw new AdminExecption("Account not found with id "+id);
 		}
@@ -59,7 +59,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Admin updateAdminDetails(Admin admin, String key) throws AdminExecption {
+	public String updateAdminDetails(Admin admin, String key) throws AdminExecption {
 		
 		CurrentAdminSession loggedAdmin = sessionRepo.findByadId(key);
 		
@@ -68,9 +68,9 @@ public class AdminServiceImpl implements AdminService{
 		}
 		
 		if(admin.getAdminId()==loggedAdmin.getAdminId()) {
-			return aRepo.save(admin);
+			return "Admin updated successfully !!\nDetalis: \n"+aRepo.save(admin).toString();
 		}else
-		throw new AdminExecption("Invalid admin details, please login first");
+		throw new AdminExecption("Invalid admin details, please try again");
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class AdminServiceImpl implements AdminService{
 		Optional<CurrentAdminSession> validOptional = sessionRepo.findById(existingAdmin.getAdminId());
 		
 		if (validOptional.isPresent()) {
-			throw new LoginException("Already logged in with this number "+existingAdmin.getMobile());
+			throw new LoginException("Already logged in with number "+existingAdmin.getMobile());
 		}
 		
 		if (existingAdmin.getPassword().equals(adminLoginDTO.getPassword())) {
@@ -95,9 +95,9 @@ public class AdminServiceImpl implements AdminService{
 			CurrentAdminSession currentSession = new CurrentAdminSession(existingAdmin
 													.getAdminId(),keyString,LocalDateTime.now());
 			
-			sessionRepo.save(currentSession);
+			 sessionRepo.save(currentSession);
 			
-			return currentSession.toString();
+			return "Login successfull !\nWelcome "+existingAdmin.getAdminName()+"\n"+currentSession.toString();
 			
 		}else 
 			throw new LoginException("Please enter a valid password");
@@ -110,10 +110,11 @@ public class AdminServiceImpl implements AdminService{
 		CurrentAdminSession adminCurrentSession = sessionRepo.findByadId(key);
 		
 		if(adminCurrentSession == null)
-			throw new LoginException("User not logged in with this number");
+			throw new LoginException("You are not logged in");
 		
 		sessionRepo.delete(adminCurrentSession);
-		return "Logged Out Successfully !";
+		
+		return "Logged out successfully !";
 	}
 
 	
