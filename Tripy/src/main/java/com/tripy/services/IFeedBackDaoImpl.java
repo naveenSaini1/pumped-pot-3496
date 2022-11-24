@@ -10,7 +10,7 @@ import com.tripy.globalexception.FeedbackException;
 import com.tripy.models.Customers;
 import com.tripy.models.Feedback;
 import com.tripy.repositary.CustomerRepository;
-import com.tripy.repositary.IFeedBackRepository;
+//import com.tripy.repositary.IFeedBackRepository;
 import com.tripy.repositary.feedbackDao;
 
 @Service
@@ -20,20 +20,26 @@ public class IFeedBackDaoImpl implements IFeedbackServer {
 	@Autowired
 	private CustomerRepository customerepo;
 	
-	@Autowired
-	private IFeedBackRepository ifeedbackRepo;
+//	@Autowired
+//	private feedbackDao ifeedbackRepo;
 
 	@Override
-	public Feedback addFeedback(Feedback feedback) {
-		// TODO Auto-generated method stub
-		Feedback f = ifeedbackRepo.save(feedback);
-		return f;
+	public Feedback addFeedback(Feedback feedback) throws FeedbackException {
+//		// TODO Auto-generated method stub
+	 Optional<Customers> customer= customerepo.findById(feedback.getCustomerId());
+	 if(customer.isPresent()) {
+			Feedback f = feedDao.save(feedback);
+		 System.out.print("helllo");
+			return f;
+	 }
+	 	throw new FeedbackException("user not found of this id");
+//		return null;
 	}
 
 	@Override
 	public Feedback findbyfeedbackid(Integer feedbackid) {
 		// TODO Auto-generated method stub
-		Feedback op = ifeedbackRepo.findById(feedbackid).orElseThrow(()->new IllegalArgumentException("feedback not found..!!"));
+		Feedback op = feedDao.findById(feedbackid).orElseThrow(()->new IllegalArgumentException("feedback not found..!!"));
 		return op;
 	}
 
@@ -69,21 +75,20 @@ public class IFeedBackDaoImpl implements IFeedbackServer {
 	}
 
 	@Override
-	public Feedback findbycustomerid(Integer Customerid) throws FeedbackException {
-//		public Feedback findbycustomerid(Integer Customerid)  throws FeedbackException{
-		//
-				Optional<Customers> customers= customerepo.findById(Customerid);
-				if(customers.isPresent()) {
-					Optional<Feedback> f1= ifeedbackRepo.findByCustomerName((customers.get().getCustomerName()));
-				
-					return f1.get();
-					
-			}
-//				return new Feedback();
-			throw new FeedbackException("no Data Found");
-//				
-//			}
-//				return null;
+	public List<Feedback> findbycustomerid(Integer Customerid) throws FeedbackException {
+		Optional<Customers> customers= customerepo.findById(Customerid);
+		if(customers.isPresent()) {
+			//Optional<Feedback> f1=feedDao.findById(customers.get().getCustomerId());
+			//return f1.get();
+		return	feedDao.findByCustomerId(Customerid);
+			
 	}
+//		return new Feedback();
+	throw new FeedbackException("no Data Found");
+//		
+//	}
+	}
+	
+	
 
 }

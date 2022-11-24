@@ -23,18 +23,18 @@ public class Feedback {
 	private String feedback;
 	private Integer rating;
 	private LocalDate submitDate;
-	private String customerName;
-	public Feedback(Integer feedbackId, String feedback, Integer rating, LocalDate submitDate, String customerName) {
+	private Integer customerId;
+	public Feedback() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Feedback(Integer feedbackId, String feedback, Integer rating, LocalDate submitDate, Integer customerId) {
 		super();
 		this.feedbackId = feedbackId;
 		this.feedback = feedback;
 		this.rating = rating;
 		this.submitDate = submitDate;
-		this.customerName = customerName;
-	}
-	public Feedback() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.customerId = customerId;
 	}
 	public Integer getFeedbackId() {
 		return feedbackId;
@@ -60,10 +60,12 @@ public class Feedback {
 	public void setSubmitDate(LocalDate submitDate) {
 		this.submitDate = submitDate;
 	}
-	public String getCustomerName() {
-		return customerName;
+	public Integer getCustomerId() {
+		return customerId;
 	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
+
+
 }

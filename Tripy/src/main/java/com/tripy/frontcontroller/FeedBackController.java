@@ -27,7 +27,7 @@ public class FeedBackController {
 		return new ResponseEntity<List<Feedback>>(list, HttpStatus.OK);
 	}
 	@PostMapping("/feedbacks")
-	public ResponseEntity<Feedback> registerFeedback(@RequestBody Feedback feedback){
+	public ResponseEntity<Feedback> registerFeedback(@RequestBody Feedback feedback) throws FeedbackException{
 		Feedback f1= ifeedbackDao.addFeedback(feedback);
 		return new ResponseEntity<Feedback>(f1, HttpStatus.CREATED);
 
@@ -44,10 +44,10 @@ public class FeedBackController {
 		return new ResponseEntity<Feedback>(feedback, HttpStatus.OK);
 	}
 	@GetMapping("/feedbacks/customer/{id}")
-	public ResponseEntity<Feedback> getByName(@PathVariable("id") Integer id) throws FeedbackException{
+	public ResponseEntity<List<Feedback>> getByCustomerId(@PathVariable("id") Integer id) throws FeedbackException{
 		System.out.print(id);
-		Feedback feedback= ifeedbackDao.findbycustomerid(id);
-		return new ResponseEntity<Feedback>(feedback, HttpStatus.OK);
+		List<Feedback> feedback= ifeedbackDao.findbycustomerid(id);
+		return new ResponseEntity<List<Feedback>>(feedback, HttpStatus.OK);
 //		Feedback feedback=new Feedback();
 //		return new ResponseEntity<Feedback>(feedback,HttpStatus.OK);
 	}
